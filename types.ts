@@ -16,4 +16,5 @@ export type QuestionAndAnswerResponse = {
   question: string;
   answer: string;
   category: string;
+  value: number;
 };
