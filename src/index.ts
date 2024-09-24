@@ -21,7 +21,9 @@ const cleanQuestion = (question: string) => {
   return question.replace("<br />", " ").trim().slice(1, -1);
 };
 
-const cleanValue = (value: string) => {
+const cleanValue = (value: string | null) => {
+  if (value == null) return 100;
+
   const cleanedValue = value.replace(/\$|,/g, "");
   const numberValue = parseFloat(cleanedValue);
   return numberValue;
@@ -43,6 +45,8 @@ app.get("/random", (req: Request, res: Response) => {
     category: randomQuestion.category,
     value: cleanedValue,
   };
+
+  console.info(response);
   res.send(response);
 });
 
